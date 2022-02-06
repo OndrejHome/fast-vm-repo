@@ -1,0 +1,54 @@
+# fast-vm-repo completion                                    -*- shell-script -*-
+
+_fast-vm-repo()
+{
+        local cur prev words cword split
+        _init_completion -s || return
+
+        if [ "$cword" -eq 4 ] && [ ${COMP_WORDS[1]} == "import" ]; then
+		COMPREPLY=( $( compgen -W "xz zst" -- "$cur" ) )
+                return 0
+        fi
+
+        if [ "$cword" -eq 3 ] && [ ${COMP_WORDS[1]} == "list" ]; then
+		COMPREPLY=( $( compgen -W "short" -- "$cur" ) )
+                return 0
+        fi
+
+        if [ "$cword" -eq 3 ]; then
+		if [ ${COMP_WORDS[1]} == "info" ] || [ ${COMP_WORDS[1]} == "import" ]; then
+			local image_name
+        	        image_name=$(fast-vm-repo list ${COMP_WORDS[2]} short)
+                	COMPREPLY=( $( compgen -W "$image_name" -- "$cur" ) )
+	                return 0
+		fi
+        fi
+
+        case $prev in
+                repolist)
+			if [ "$cword" -le 3 ]; then
+				COMPREPLY=( $( compgen -W "refresh short" -- "$cur" ) )
+			fi
+                        return 0
+                        ;;
+		list|info|import)
+			if [ "$cword" -le 3 ]; then
+				local repo_name
+	                        repo_name=$(fast-vm-repo repolist short)
+                        	COMPREPLY=( $( compgen -W "$repo_name" -- "$cur" ) )
+			fi
+                        return 0
+                        ;;
+	esac
+
+
+        $split && return 0
+        if [ "$cword" -lt 2 ]; then
+                COMPREPLY=( $( compgen -W 'repolist list info import' -- "$cur" ) )
+                return 0
+        fi
+
+} &&
+complete -F _fast-vm-repo fast-vm-repo
+
+# ex: ts=4 sw=4 et filetype=sh

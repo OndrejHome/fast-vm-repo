@@ -1,0 +1,408 @@
+#!/bin/sh
+FASTVM_REPO_DIR="/etc/fast-vm.repos.d"
+FASTVM_REPO_CACHE_DIR="/tmp/fast-vm-repo"
+FASTVM_XSLT_DIR="/usr/share/fast-vm-repo/xslt"
+LOG_LEVEL=7
+DISPLAY_LEVEL=7
+FVM=$(basename "$0")
+
+## terminal colors
+c_red=$(tput setaf 1)
+c_yellow=$(tput setaf 3)
+c_green=$(tput setaf 2)
+c_cyan=$(tput setaf 6)
+c_normal=$(tput sgr0)
+
+## LOG priorities
+P_DEBUG=7
+P_INFO=6
+P_WARNING=4
+P_ERROR=3
+
+#### start common functions
+# function for message output to display&logs based on LOG/DISPLAY level
+pmsg () {
+	priority="$1"
+	message="$2"
+	if [ "$LOG_LEVEL" -ge "$priority" ]; then
+		printf "%s | %s" "$USER" "$message"|logger -p "$priority" --id -t fast-vm
+	fi
+	if [ "$DISPLAY_LEVEL" -ge "$priority" ]; then
+		case "$priority" in
+			"$P_DEBUG")
+				# shellcheck disable=SC2059
+				printf "[${c_cyan}inf${c_normal}] %b" "$message" 
+				;;
+			"$P_INFO")
+				# shellcheck disable=SC2059
+				printf "[${c_green}ok${c_normal}] %b" "$message"
+				;;
+			"$P_WARNING")
+				# shellcheck disable=SC2059
+				printf "[${c_yellow}wrn${c_normal}] %b" "$message"
+				;;
+			"$P_ERROR")
+				# shellcheck disable=SC2059
+				printf "[${c_red}err${c_normal}] %b" "$message"
+				;;
+			*)
+				printf "[unk] %s" "$message"
+				;;
+		esac
+	fi
+}
+# helper function for loading and checking configuration
+check_empty () {
+	var_name="$1"
+	var_value="$2"
+	if [ -z "$var_value" ]; then
+                pmsg $P_ERROR "variable $var_name not declared in global configuration run configure-fast-vm again or fix manually\n"
+		exit 2
+	fi
+}
+
+check_file () {
+	file_path="$1"
+	file_size=0
+	file_local=0
+	error_prefix="$2"
+	quiet_flag="$3"
+	if [ -z "$file_path" ]; then pmsg $P_DEBUG "provided empty file path\n"; fi
+	if [ "$curl_ok" -eq 0 ] && [ "$(echo "$file_path" | awk  '{ s=substr($0, 0, 4); print s; }' )"  = "http" ]; then
+		curl_data=$(curl --head "$file_path" 2>/dev/null)
+		curl_exit="$?"
+		curl_httpok=$(echo "$curl_data"|grep -c -E "(HTTP.*200 OK|HTTP/2 200)")
+		if [ "$curl_httpok" -eq "1" ]; then
+			file_size=$(echo "$curl_data"|grep -i "Content-Length:"|awk '{print $2}'|sed 's/[^0-9]*//g')
+			if [ -z "$file_size" ]; then
+				file_size=0
+				pmsg $P_DEBUG "Unable to detect remote file. Using '$file_size' instead.\n"
+			else
+				pmsg $P_DEBUG "Detected remote file with size '$file_size'.\n"
+			fi
+		else
+			if [ -z "$quiet_flag" ]; then
+				# print error only when "quiet" flag is not present
+				pmsg $P_ERROR "$error_prefix: error checking remote file on the server.\nCURL exited with code $curl_exit and we got following information from server\n$curl_data\n"
+			fi
+			return 2
+		fi
+	else
+		if [ -f "$file_path" ]; then
+			file_local=1
+		else
+			pmsg $P_ERROR "$error_prefix: local file '$file_path' not found\n"
+			return 2
+		fi
+	fi
+}
+
+download_file () {
+	file_url="$1"
+	tmp_file=$(mktemp)
+	pmsg $P_DEBUG "downloading $file_url\ninto $tmp_file\n" >&2
+	if curl -o "$tmp_file" -s "$file_url"; then
+		echo "$tmp_file"
+	else
+		pmsg $P_ERROR "Download failed\n" >&2
+		exit 1
+	fi
+}
+
+validate_xml_file () {
+	file="$1"
+	if ! xmllint --noout "$file" 2>&1; then
+		echo "XML file validation failed"
+		return 1
+	fi
+}
+
+usage () {
+	part="$1"
+
+	case $part in
+		repolist)
+			echo "$FVM repolist [ <refresh|short> ]"
+			;;
+		list)
+			echo "$FVM list [ RepoId [ short ] ]"
+			;;
+		info)
+			echo "$FVM info RepoId ImageName"
+			;;
+		import)
+			echo "$FVM import RepoId ImageName [ <xz|zst> ]"
+			;;
+		*)
+			echo "== fast-vm-repo version 0.1 <ondrej-xa2iel8u@famera.cz> =="
+			echo "$FVM <action> <options>"
+			for cmd in repolist list info import;
+			do
+				usage $cmd noexit
+			done
+			;;
+	esac
+	# exit only when second parameter is not specified, otherwise just return and continue
+	if [ -z "$2" ]; then exit 1; fi
+}
+
+#### end common functions
+
+# first parameter is compulsory
+if [ -z "$1" ]; then usage; fi
+
+## check if there is curl available so we can fetch images from http/https
+command -v curl >/dev/null 2>&1
+curl_ok="$?"
+
+## Check repositories we have enabled
+
+
+
+check_repo_cache_dir () {
+	# create repository cache directory if it doesn't exists
+	if [ ! -d "$FASTVM_REPO_CACHE_DIR" ]; then mkdir "$FASTVM_REPO_CACHE_DIR"; fi
+	# check if there are any cached repository data
+	if [ "$(find "$FASTVM_REPO_CACHE_DIR" -name '*.xml'|wc -l)" = '0' ];then
+		pmsg "$P_WARNING" "There are no cached repository data available.\n"
+		printf "RECOMMENDED: run 'fast-vm-repo repository refresh' to download fresh metadata.\n\n"
+	fi
+}
+
+download_repository_metadata () {
+#/etc/fast-vm.repos.d/*repo
+# Example .repo file:
+# description= test repository
+# url=http://localhost/test.xml
+# enabled=1
+tmp_files=""
+
+for repofile in $(find "$FASTVM_REPO_DIR" -name '*.repo'); 
+do
+	repo_basename=$(basename "$repofile")
+	repo_url=$(grep 'url=' "$repofile" |cut -d= -f2)
+	repo_enabled=$(grep 'enabled=' "$repofile" |cut -d= -f2)
+	if [ -n "$repo_url" ] && [ "$repo_enabled" = '1' ]; then
+		repo_dwn_file="$repo_url"
+		check_file "$repo_url" "repo file"
+                if [ "$?" = 2 ]; then pmsg $P_ERROR "repository file doesn't exists. Skipping.\n"; continue; fi
+		if [ "$file_local" = '0' ]; then
+			repo_dwn_file=$(download_file "$repo_url")
+			tmp_files="$tmp_files $repo_dwn_file"
+		fi
+		if validate_xml_file "$repo_dwn_file"; then
+			# copy the (downloaded) file into cache with XML extension
+			cp "$repo_dwn_file" "$FASTVM_REPO_CACHE_DIR/${repo_basename%.*}.xml"
+		else
+			pmsg $P_ERROR "repository ${repo_basename%.*} XML file validation failed, skipping.\n"
+		fi
+	fi
+done
+# cleanup temporary files
+if [ -n "$tmp_files" ]; then rm -f "$tmp_files"; fi
+
+}
+
+#### main script
+case "$1" in
+	repolist)
+		case "$2" in
+			refresh)
+				rm -f "$FASTVM_REPO_CACHE_DIR/*xml"
+				download_repository_metadata
+				;;
+			short)
+				for repofile in $(find "$FASTVM_REPO_DIR" -name '*.repo'|sort); 
+				do
+					basename "$repofile" .repo
+				done
+				exit 0
+				;;
+			*)
+				check_repo_cache_dir
+				;;
+		esac
+
+		printf "%-20s %7s %6s %6s %-30s\n" 'RepoID' 'Enabled' 'Cached' 'Images' 'Repository description'
+		for repofile in $(find "$FASTVM_REPO_DIR" -name '*.repo'|sort); 
+		do
+			repo_basename=$(basename "$repofile")
+			repo_description=$(grep 'description=' "$repofile" |cut -d= -f2)
+			# image count in repository (valid only for cached ones)
+			image_count='unk'
+			# check if repository is enabled
+			repo_enabled="${c_red}no ${c_normal}"
+			if [ "$(grep 'enabled=' "$repofile"|cut -d= -f2|cut -c1)" = '1' ]; then
+				repo_enabled="${c_green}yes${c_normal}"; 
+			fi
+			# check if we have cached repodata
+			repo_cached="${c_red}no ${c_normal}"
+			if [ -f "$FASTVM_REPO_CACHE_DIR/${repo_basename%.*}.xml" ] ; then 
+				repo_cached="${c_green}yes${c_normal}"; 
+				if ! validate_xml_file "$FASTVM_REPO_CACHE_DIR/${repo_basename%.*}.xml" >/dev/null; then
+					repo_cached="${c_red}ERR${c_normal}"
+				else
+					image_count=$(xmllint --xpath 'count(//image)' "$FASTVM_REPO_CACHE_DIR/${repo_basename%.*}.xml")
+				fi
+			fi
+			printf "%-20s     %3s   %3s  %6s %-30s\n" "${repo_basename%.*}" "$repo_enabled" "$repo_cached" "$image_count" "$repo_description"
+
+		done
+		;;
+	import)
+		repo_id="$2"
+		if [ -z "$repo_id" ]; then pmsg $P_ERROR "missing repository ID\n"; usage info; fi
+		image_name="$3"
+		if [ -z "$image_name" ]; then pmsg $P_ERROR "missing Image name\n"; usage info; fi
+		image_format="$4"
+		if [ -z "$image_format" ]; then image_format='xz'; fi #TODO: use first URL instead
+
+		if [ ! -f "$FASTVM_REPO_CACHE_DIR/${repo_id}.xml" ]; then
+			pmsg $P_ERROR "Cached repository data not present. Try running 'fast-vm-repo repolist refresh'.\n"
+			exit 1
+		fi
+
+		if [ "$(xmllint --xpath "count(//image/name[text() = '$image_name'])" "$FASTVM_REPO_CACHE_DIR/${repo_id}.xml")" = '0' ]; then
+			pmsg $P_ERROR "Image named '$image_name' not found in '$repo_id' repository.\n";
+			exit 1
+		fi
+
+		details=$(xmllint --xpath "//image/name[text() = '$image_name']/.." "$FASTVM_REPO_CACHE_DIR/${repo_id}.xml"|xsltproc "$FASTVM_XSLT_DIR/process_image_detail.xml" -)
+		echo "$details" |while read -r image_name first_url libvirt_xml_url hack_file_url xz_url xz_size zst_url zst_size extra_file; do 
+			url=''
+			case "$image_format" in
+				xz)
+					if [ "$xz_url" = 'NA' ]; then
+						pmsg $P_ERROR "here is no URL for XZ image\n"
+						exit 1
+					fi
+					url="$xz_url"
+					;;
+				zst)
+					if [ "$zst_url" = 'NA' ]; then
+						pmsg $P_ERROR "there is no URL for ZST image\n"
+						exit 1
+					fi
+					url="$zst_url"
+					;;
+				*)
+					pmsg $P_ERROR "unknown image format '$image_format'. Use one of 'xz'(default) or 'zst'.\n"
+					exit 1
+					;;
+			esac
+			if [ "$libvirt_xml_url" = 'none' ]; then
+				pmsg $P_ERROR "Repository is missing URL for libvirt XML, contact repository owner.\n"
+				exit 1
+			fi
+			if [ "$hack_file_url" = 'none' ]; then hack_file_url=''; fi
+
+			# call actual import via fast-vm-image
+			if command -v fast-vm-image >/dev/null 2>&1; then
+				fast-vm-image import "$image_name" "$url" "$libvirt_xml_url" "$hack_file_url"
+			else
+				pmsg $P_DEBUG "fast-vm-image import $image_name $url $libvirt_xml_url $hack_file_url\n"
+				pmsg $P_ERROR "fast-vm-image command cannot be found, you probably need to install it and then you can run above command to import the image.\n"
+			fi
+		done
+		;;
+	info)
+		repo_id="$2"
+		if [ -z "$repo_id" ]; then pmsg $P_ERROR "missing repository ID\n"; usage info; fi
+		image_name="$3"
+		if [ -z "$image_name" ]; then pmsg $P_ERROR "missing Image name\n"; usage info; fi
+		
+		if [ ! -f "$FASTVM_REPO_CACHE_DIR/${repo_id}.xml" ]; then
+			pmsg $P_ERROR "Cached repository data not present. Try running 'fast-vm-repo repolist refresh'.\n"
+			exit 1
+		fi
+		if ! validate_xml_file "$FASTVM_REPO_CACHE_DIR/${repo_id}.xml"; then
+			pmsg $P_ERROR "Cached repository metadata XML is invalid. Try '$0 repolist refresh' to re-download metadata.\n"
+			exit 1
+		fi
+
+		if [ "$(xmllint --xpath "count(//image/name[text() = '$image_name'])" "$FASTVM_REPO_CACHE_DIR/${repo_id}.xml")" = '0' ]; then
+			pmsg $P_ERROR "Image named '$image_name' not found in '$repo_id' repository.\n";
+			exit 1
+		fi
+
+		printf "==== Repo %s image %s details:\n" "$repo_id" "$image_name"
+		description=$(xmllint --xpath "/images/image/name[text() = '$image_name']/../description/text()" "$FASTVM_REPO_CACHE_DIR/${repo_id}.xml")
+		details=$(xmllint --xpath "//image/name[text() = '$image_name']/.." "$FASTVM_REPO_CACHE_DIR/${repo_id}.xml"|xsltproc "$FASTVM_XSLT_DIR/process_image_detail.xml" -)
+		echo "$details" |while read -r image_name first_url libvirt_xml_url hack_file_url xz_url xz_size zst_url zst_size extra_file; do 
+
+			size=$(basename "$first_url"|sed -nr 's/^([0-9]+)g__.*$/\1/gp')
+                	if [ -z "$size" ]; then size='10'; fi # default if there is no size in filename
+
+			printf " Name: %-20s\n Size: %4s\n" "$image_name" "${size}g"
+			if [ "$xz_url" = 'NA' ]; then xz_url='not available'; xz_size=''; fi
+			if [ "$zst_url" = 'NA' ]; then zst_url='not available'; zst_size=''; fi
+			if [ "$hack_file_url" = 'none' ]; then hack_file_url='not available'; fi
+			printf "L-XML: ${c_yellow}%s${c_normal}\n" "$libvirt_xml_url"
+			printf "Hacks: ${c_yellow}%s${c_normal}\n" "$hack_file_url"
+			printf "   XZ  (%6s): ${c_yellow}%s${c_normal}\n" "$xz_size" "$xz_url"
+			printf "  ZST  (%6s): ${c_yellow}%s${c_normal}\n" "$zst_size" "$zst_url"
+			printf "Description: \n---\n%s\n---\n" "$description"
+		done
+		;;
+	list)
+		repo_id="$2"
+		cached_repo_xmls=""
+		if [ -n "$repo_id" ]; then
+			if [ -f "$FASTVM_REPO_CACHE_DIR/$repo_id.xml" ]; then
+				cached_repo_xmls="$FASTVM_REPO_CACHE_DIR/$repo_id.xml"
+			else
+				pmsg $P_ERROR "No cached metadata for repo '$repo_id'.\n"
+				exit 1
+			fi
+		else
+			check_repo_cache_dir
+			cached_repo_xmls=$(find "$FASTVM_REPO_CACHE_DIR" -name '*.xml'|sort)
+		fi
+		if [ "$3" = 'short' ]; then
+			xmllint --xpath '//image/name' "$FASTVM_REPO_CACHE_DIR/$repo_id.xml"|tr -d '\n'|sed 's#<name>##g;s#</name>#\n#g'
+			# because EL7 and EL8 contains old xmllint (<2.9.9) that doesn't separate results with newline
+			# the above "workaround" is used to achieve consistent output on all platforms
+			# xmllint --xpath '//image/name/text()' "$FASTVM_REPO_CACHE_DIR/$repo_id.xml"
+			exit
+		fi
+		# process the data that we have
+		for repofile in $cached_repo_xmls;
+		do
+			repo_conf="$FASTVM_REPO_DIR/$(basename "${repofile%.*}.repo")"
+			if [ ! -e "$repo_conf" ]; then continue; fi # skip non-existing cached-only repos
+			
+			repo_description=$(grep 'description=' "$repo_conf" |cut -d= -f2)
+			printf "=== Repo: (%s) %s\n" "$(basename -s .repo "$repo_conf")" "$repo_description"
+
+			if ! validate_xml_file "$repofile" >/dev/null; then
+				pmsg $P_ERROR "Repository '$(basename -s .repo "$repo_conf")' XML file is invalid.\n"
+				continue
+			fi
+
+			printf '%-20s   %5s|%4s|%14s |%5s\n' '' 'Image' 'Hack' 'Download size' 'Extra'
+			printf '%-20s   %5s|%4s|%6s |%6s |%5s\n' 'Image name' 'Size' 'file' 'XZ' 'ZST' 'file'
+
+			process_data=$(xsltproc "$FASTVM_XSLT_DIR/process_image_list.xml" "$repofile")
+			echo "$process_data"| while read -r image_name first_url hack_file xz_url xz_size zst_url zst_size extra_file;
+			do
+				# detect size of image from filename (same way as we do when doing 'import'
+				size=$(basename "$first_url"|sed -nr 's/^([0-9]+)g__.*$/\1/gp')
+                		if [ -z "$size" ]; then size='10'; fi # default if there is no size in filename
+
+				hack_file_out="${c_red}no ${c_normal}"
+				if [ "$hack_file" = 'yes' ]; then hack_file_out="${c_green}yes${c_normal}"; fi
+				extra_file_out="${c_red}no ${c_normal}"
+				if [ "$extra_file" = 'yes' ]; then extra_file_out="${c_green}yes${c_normal}"; fi
+
+				# print information
+			        printf '%-20s   %4s%sg%s  %3s| %4s%sMB%s| %4s%sMB%s|  %3s\n' "$image_name" "${size}" "${c_cyan}" "${c_normal}" "$hack_file_out" "$xz_size" "${c_cyan}" "${c_normal}" "$zst_size" "${c_cyan}" "${c_normal}" "$extra_file_out"
+			done
+
+		done
+
+		;;
+	*) 
+		pmsg $P_ERROR "unknown action\n"
+		usage
+		;;
+esac	

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata version='1'/>
+<images>
+<image>
+ <name>centos-8.1</name>
+ <arch>x86_64</arch>
+ <platform>bios</platform>
+ <description>CentOS 8.1 minimal install with configured serial console, ....</description>
+ <libvirt-xml>https://raw.githubusercontent.com/OndrejHome/fast-vm-public-images/master/centos/xml/centos-6.3-current.xml</libvirt-xml>
+ <hacks-file>https://raw.githubusercontent.com/OndrejHome/fast-vm-public-images/master/centos/hacks/6g_centos-8-hacks.sh</hacks-file>
+ <image-file format='xz' download_size='536681540'>https://kr.famera.cz/fastvm-images/generated/6g__centos-8.1.img.xz</image-file>
+ <image-file format='zst' download_size='573699657'>https://kr.famera.cz/fastvm-images/generated/6g__centos-8.1.img.zst</image-file>
+</image>
+<image>
+ <name>centos-6.9-uefi</name>
+ <arch>x86_64</arch>
+ <platform>uefi</platform>
+ <description>CentOS 6.9 minimal install with configured serial console, on UEFI system ...</description>
+ <libvirt-xml>https://raw.githubusercontent.com/OndrejHome/fast-vm-public-images/master/centos/xml/centos-6.3-current.xml</libvirt-xml>
+ <image-file format='xz' download_size='289710092'>http://ftp.linux.cz/pub/linux/people/ondrej_famera/fastvm-images/generated/6g__centos-6.9-uefi.img.xz</image-file>
+ <extra-file format='plain'>http://ftp.linux.cz/pub/linux/people/ondrej_famera/fastvm-images/generated/nvram-centos-6.9-uefi_VARS.fd</extra-file>
+</image>
+</images>
+
+<!--
+<metadata version='1'/>  REQUIRED
+<images>
+  <image>
+    <name>IMAGE-NAME</name>                REQUIRED
+    <arch>x86_64</arch>                    OPTIONAL
+    <platform>bios</platform>              OPTIONAL
+    <description>DESCRIPTION</description> REQUIRED
+    <libvirt-xml>https://...</libvirt-xml> REQUIRED
+    <hacks-file>https://...</hacks-file>   OPTIONAL
+    <image-file format='xz' download_size='1234567890'>https://...</image-file> AT LEAST ONE REQUIRED (xz or zst)
+    <image-file format='zst' download_size='573699657'>https://...</image-file> AT LEAST ONE REQUIRED (xz or zst)
+    <extra-file format='plain'>http://...</extra-file>  OPTIONAL
+  </image>
+</images>
+-->
+

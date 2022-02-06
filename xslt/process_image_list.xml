@@ -1,0 +1,30 @@
+<xsl:transform xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
+    <xsl:output method="text" encoding="UTF-8" />
+    <xsl:template match="/">
+    <xsl:for-each select="//image">
+        <xsl:value-of select="name/text()" />
+
+	<xsl:value-of select="concat(' ', image-file/text()[1])" />
+
+        <xsl:if test="count(hacks-file) = 1"> yes</xsl:if>
+        <xsl:if test="count(hacks-file) != 1"> no</xsl:if>
+
+        <xsl:if test="count(image-file[@format='xz']) = 1">
+	  <xsl:value-of select="concat(' ', image-file[@format='xz']/text())" />
+	  <xsl:value-of select="concat(' ', ceiling((image-file[@format='xz']/@download_size) div 1024 div 1024))" />
+	</xsl:if>
+        <xsl:if test="count(image-file[@format='xz']) = 0"> NA NA</xsl:if>
+        
+	<xsl:if test="count(image-file[@format='zst']) = 1">
+	  <xsl:value-of select="concat(' ', image-file[@format='zst']/text())" />
+	  <xsl:value-of select="concat(' ', ceiling((image-file[@format='zst']/@download_size) div 1024 div 1024))" />
+	</xsl:if>
+        <xsl:if test="count(image-file[@format='zst']) = 0"> NA NA</xsl:if>
+
+        <xsl:if test="count(extra-file) = 1"> yes</xsl:if>
+        <xsl:if test="count(extra-file) != 1"> no</xsl:if>
+
+        <xsl:text>&#xa;</xsl:text>
+    </xsl:for-each>
+    </xsl:template>
+</xsl:transform>

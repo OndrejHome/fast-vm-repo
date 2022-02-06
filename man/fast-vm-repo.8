@@ -1,0 +1,61 @@
+.TH FAST-VM-REPO 8 "fast-vm-repo 0.1 (2022-02-04)" "fast-vm-repo" "fast-vm-repo" \" -*- nroff -*-
+.SH NAME
+fast-vm-repo \(em script for listing and retrieving fast-vm images from repositories
+.SH SYNOPSIS
+.B fast-vm-repo
+.RB <action>
+.RB <options>
+
+.B fast-vm-repo
+.BR repolist
+.RB "[ <" refresh | short "> ]"
+
+.B fast-vm-repo
+.BR list
+.RI "[ " RepoId
+.RB " [ " short " ] ]"
+
+.B fast-vm-repo
+.BR info
+.IR RepoId
+.IR ImageName
+
+.B fast-vm-repo
+.BR import
+.IR RepoId
+.IR ImageName
+.RB "[ <" xz | zst "> ]"
+
+.SH DESCRIPTION
+To provide more convenient way for importing fast-vm images the fast-vm-repo script provides interfaces that can parse fast-vm image repository XMLs containing all needed information for importing images. Before the fast-vm-repo can be used to list/import images it needs to download repository XML into cache using the 'fast-vm-repo repolist refresh' action. After this the cached XMLs of defined repositories are stored in '/tmp/fast-vm-repo/' directory and are used for further actions.
+
+The repositories can be hosted on local file system or remotely over http/https. Path/Link to repository XML is stored within '.repo' file in /etc/fast-vm.repos.d/ directory. Only one XML per '.repo' file is permitted. Syntax of repository XML file can be found in '/usr/share/doc/fast-vm-repo/repository-sample.xml'.
+
+.SH EXAMPLES
+
+Download repository metadata/Refresh repository cache.
+.sp
+.BI "fast-vm-repo " "repolist refresh"
+
+List repositories with details.
+.sp
+.BI "fast-vm-repo " "repolist"
+
+List all available images.
+.sp
+.BI "fast-vm-repo " "list"
+
+.RB "Get information about image " "centos-8.5" " from repository " "centos" .
+.sp
+.BI "fast-vm-repo " "info " "centos centos-8.5"
+
+.RB "Import image " "centos-8.5" " from repository " "centos" " into fast-vm."
+.sp
+.BI "fast-vm-repo " "import " "centos centos-8.5"
+
+.SH EXIT CODES
+In case of error the fast-vm-repo will return non-zero exit code.
+
+.SH SEE ALSO
+.BR fast-vm (8),
+.BR fast-vm-image (8)
