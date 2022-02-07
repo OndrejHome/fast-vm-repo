@@ -1,5 +1,5 @@
 Name:           fast-vm-public-repositories
-Version:        20220206
+Version:        20220207
 Release:        1%{?dist}
 Summary:        Repository files for fast-vm-repo (All mirrors)
 
@@ -47,5 +47,8 @@ Repository files for fast-vm-repo script - public fast-vm images.
 %config(noreplace) %{_sysconfdir}/fast-vm.repos.d/cz_*.repo
 
 %changelog
+* Mon Feb 07 2022 Ondrej Famera <ondrej-xa2iel8u@famera.cz> 20220207-1
+- Added Debian images repository
+
 * Sun Feb 06 2022 Ondrej Famera <ondrej-xa2iel8u@famera.cz> 20220206-1
 - initial release
