@@ -5,7 +5,7 @@
  <description>CHANGEME</description>
  <libvirt-xml>https://raw.githubusercontent.com/OndrejHome/fast-vm-public-images/master/DIST/xml/LXML</libvirt-xml>
  <hacks-file>https://raw.githubusercontent.com/OndrejHome/fast-vm-public-images/master/DIST/hacks/HACK</hacks-file>
- <image-file format='xz' download_size='XZ_SIZE'>https://kr.famera.cz/fastvm-images/generated/FNM.img.xz</image-file>
- <image-file format='zst' download_size='ZST_SIZE'>https://kr.famera.cz/fastvm-images/generated/FNM.img.zst</image-file>
- <extra-file format='plain'>https://kr.famera.cz/fastvm-images/generated/EXTRA</extra-file>
+ <image-file format='xz' download_size='XZ_SIZE'>https://kr.famera.cz/fastvm-images/FNM.img.xz</image-file>
+ <image-file format='zst' download_size='ZST_SIZE'>https://kr.famera.cz/fastvm-images/FNM.img.zst</image-file>
+ <extra-file format='plain'>https://kr.famera.cz/fastvm-images/EXTRA</extra-file>
 </image>
