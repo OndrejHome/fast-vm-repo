@@ -1,0 +1,3 @@
+url=http://ftp.linux.cz/pub/linux/people/ondrej_famera/fastvm-images/repository/cz_centos-stream.xml
+description=CZ CentOS Stream images
+enabled=1
