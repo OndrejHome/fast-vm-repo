@@ -1,0 +1,3 @@
+url=http://ftp.linux.cz/pub/linux/people/ondrej_famera/fastvm-images/repository/cz_opensuse.xml
+description=CZ OpenSUSE images
+enabled=1

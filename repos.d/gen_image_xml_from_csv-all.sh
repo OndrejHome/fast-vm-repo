@@ -15,3 +15,5 @@ bash gen_image_xml_from_csv.sh cz_oracle-linux.csv template_ > cz_oracle-linux.x
 bash gen_image_xml_from_csv.sh kr_oracle-linux.csv template_ > kr_oracle-linux.xml
 bash gen_image_xml_from_csv.sh cz_rhcos.csv template_ > cz_rhcos.xml
 bash gen_image_xml_from_csv.sh kr_rhcos.csv template_ > kr_rhcos.xml
+bash gen_image_xml_from_csv.sh cz_opensuse.csv template_ > cz_opensuse.xml
+bash gen_image_xml_from_csv.sh kr_opensuse.csv template_ > kr_opensuse.xml

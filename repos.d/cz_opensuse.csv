@@ -1,0 +1,5 @@
+fast-vm image name;platform (bios/eufi);architecture (x86_64);github distribution directory;fast-vm image file directory;fast-vm image file name;libvirt xml file name ;hack file name ;extra file name (optional);xz image file size in bytes; zst image file size in bytes;location;file containing description for image; all further values are ignored
+
+os-15.0;bios;x86_64;opensuse;generated;6g__opensuse-15.0;opensuse-15.xml;6g_opensuse-15-hacks.sh;;447915764;479659036;cz;;
+os-15.1;bios;x86_64;opensuse;generated;6g__opensuse-15.1;opensuse-15.xml;6g_opensuse-15-hacks.sh;;511100332;546998279;cz;;
+os-15.2;bios;x86_64;opensuse;generated;6g__opensuse-15.2;opensuse-15.xml;6g_opensuse-15-hacks.sh;;488359776;520151833;cz;;
