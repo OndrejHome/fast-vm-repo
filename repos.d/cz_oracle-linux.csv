@@ -1,0 +1,28 @@
+fast-vm image name;platform (bios/eufi);architecture (x86_64);github distribution directory;fast-vm image file directory;fast-vm image file name;libvirt xml file name ;hack file name ;extra file name (optional);xz image file size in bytes; zst image file size in bytes;location;file containing description for image; all further values are ignored
+;;Oracle Linux 6.X
+ol-6.3;bios;x86_64;ol;oracle-linux;6g__ol-6.3;ol-6.3-current.xml;6g_ol-6-hacks.sh;;177024096;187529748;cz;;
+ol-6.4;bios;x86_64;ol;oracle-linux;6g__ol-6.4;ol-6.3-current.xml;6g_ol-6-hacks.sh;;185941292;194847720;cz;;
+ol-6.5;bios;x86_64;ol;oracle-linux;6g__ol-6.5;ol-6.3-current.xml;6g_ol-6-hacks.sh;;208806956;219652627;cz;;
+ol-6.6;bios;x86_64;ol;oracle-linux;6g__ol-6.6;ol-6.3-current.xml;6g_ol-6-hacks.sh;;216684528;228170602;cz;;
+ol-6.7;bios;x86_64;ol;oracle-linux;6g__ol-6.7;ol-6.3-current.xml;6g_ol-6-hacks.sh;;232036124;243846421;cz;;
+ol-6.8;bios;x86_64;ol;oracle-linux;6g__ol-6.8;ol-6.3-current.xml;6g_ol-6-hacks.sh;;244336372;257529155;cz;;
+ol-6.9;bios;x86_64;ol;oracle-linux;6g__ol-6.9;ol-6.3-current.xml;6g_ol-6-hacks.sh;;263388648;277487957;cz;;
+ol-6.10;bios;x86_64;ol;oracle-linux;6g__ol-6.10;ol-6.3-current.xml;6g_ol-6-hacks.sh;;265286524;278514676;cz;;
+;;Oracle Linux 7.X
+ol-7.0;bios;x86_64;ol;oracle-linux;6g__ol-7.0;ol-6.3-current.xml;6g_ol-7-hacks.sh;;277109812;291185975;cz;;
+ol-7.1;bios;x86_64;ol;oracle-linux;6g__ol-7.1;ol-6.3-current.xml;6g_ol-7-hacks.sh;;302202708;319199942;cz;;
+ol-7.2;bios;x86_64;ol;oracle-linux;6g__ol-7.2;ol-6.3-current.xml;6g_ol-7-hacks.sh;;297729576;311874871;cz;;
+ol-7.3;bios;x86_64;ol;oracle-linux;6g__ol-7.3;ol-6.3-current.xml;6g_ol-7-hacks.sh;;349742540;367072030;cz;;
+ol-7.4;bios;x86_64;ol;oracle-linux;6g__ol-7.4;ol-6.3-current.xml;6g_ol-7-hacks.sh;;358125408;373236346;cz;;
+ol-7.5;bios;x86_64;ol;oracle-linux;6g__ol-7.5;ol-6.3-current.xml;6g_ol-7-hacks.sh;;388453980;403814231;cz;;
+ol-7.6;bios;x86_64;ol;oracle-linux;6g__ol-7.6;ol-6.3-current.xml;6g_ol-7-hacks.sh;;410450208;421788074;cz;;
+ol-7.7;bios;x86_64;ol;oracle-linux;6g__ol-7.7;ol-6.3-current.xml;6g_ol-7-hacks.sh;;427326452;440439969;cz;;
+ol-7.8;bios;x86_64;ol;oracle-linux;6g__ol-7.8;ol-6.3-current.xml;6g_ol-7-hacks.sh;;446496560;459625105;cz;;
+ol-7.9;bios;x86_64;ol;oracle-linux;6g__ol-7.9;ol-6.3-current.xml;6g_ol-7-hacks.sh;;479655588;493120363;cz;;
+;;Oracle Linux 8.X
+ol-8.0;bios;x86_64;ol;oracle-linux;6g__ol-8.0;ol-6.3-current.xml;6g_ol-8-hacks.sh;;359347212;376346529;cz;;
+ol-8.1;bios;x86_64;ol;oracle-linux;6g__ol-8.1;ol-6.3-current.xml;6g_ol-8-hacks.sh;;395449948;414931164;cz;;
+ol-8.2;bios;x86_64;ol;oracle-linux;6g__ol-8.2;ol-6.3-current.xml;6g_ol-8-hacks.sh;;530621224;549686263;cz;;
+ol-8.3;bios;x86_64;ol;oracle-linux;6g__ol-8.3;ol-6.3-current.xml;6g_ol-8-hacks.sh;;608368504;629582804;cz;;
+ol-8.4;bios;x86_64;ol;oracle-linux;6g__ol-8.4;ol-6.3-current.xml;6g_ol-8-hacks.sh;;584677152;600895599;cz;;
+ol-8.5;bios;x86_64;ol;oracle-linux;6g__ol-8.5;ol-6.3-current.xml;6g_ol-8-hacks.sh;;640017976;653618192;cz;;
