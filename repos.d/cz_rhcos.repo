@@ -1,0 +1,3 @@
+url=http://ftp.linux.cz/pub/linux/people/ondrej_famera/fastvm-images/repository/cz_rhcos.xml
+description=CZ RH CoreOS images
+enabled=1
