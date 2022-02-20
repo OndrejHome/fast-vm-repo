@@ -1,0 +1,5 @@
+fast-vm image name;platform (bios/eufi);architecture (x86_64);github distribution directory;fast-vm image file directory;fast-vm image file name;libvirt xml file name ;hack file name ;extra file name (optional);xz image file size in bytes; zst image file size in bytes;location;file containing description for image; all further values are ignored
+
+alma-8.3;bios;x86_64;alma;generated;6g__alma-8.3;alma-8.3-current.xml;6g_alma-8-hacks.sh;;448566328;466111848;kr;;
+alma-8.4;bios;x86_64;alma;generated;6g__alma-8.4;alma-8.3-current.xml;6g_alma-8-hacks.sh;;460818280;477765152;kr;;
+alma-8.5;bios;x86_64;alma;generated;6g__alma-8.5;alma-8.3-current.xml;6g_alma-8-hacks.sh;;505512232;522982758;kr;;

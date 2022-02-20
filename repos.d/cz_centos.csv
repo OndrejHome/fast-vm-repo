@@ -1,0 +1,46 @@
+fast-vm image name;platform (bios/eufi);architecture (x86_64);github distribution directory;fast-vm image file directory;fast-vm image file name;libvirt xml file name ;hack file name ;extra file name (optional);xz image file size in bytes; zst image file size in bytes;location;file containing description for image; all further values are ignored
+;; CentOS 6.X
+centos-6.3;bios;x86_64;centos;generated;6g__centos-6.3;centos-6.3-current.xml;6g_centos-6-hacks.sh;;139633916;;cz;;
+centos-6.3-uefi;uefi;x86_64;centos;generated;6g__centos-6.3-uefi;centos-6.3-current-uefi.xml;6g_centos-6-hacks-uefi.sh;nvram-centos-6.3-uefi_VARS.fd;135881420;;cz;;
+centos-6.4;bios;x86_64;centos;generated;6g__centos-6.4;centos-6.3-current.xml;6g_centos-6-hacks.sh;;147901176;;cz;;
+centos-6.4-uefi;uefi;x86_64;centos;generated;6g__centos-6.4-uefi;centos-6.3-current-uefi.xml;6g_centos-6-hacks-uefi.sh;nvram-centos-6.4-uefi_VARS.fd;147615620;;cz;;
+centos-6.5;bios;x86_64;centos;generated;6g__centos-6.5;centos-6.3-current.xml;6g_centos-6-hacks.sh;;154986152;;cz;;
+centos-6.5-uefi;uefi;x86_64;centos;generated;6g__centos-6.5-uefi;centos-6.3-current-uefi.xml;6g_centos-6-hacks-uefi.sh;nvram-centos-6.5-uefi_VARS.fd;155566800;;cz;;
+centos-6.6;bios;x86_64;centos;generated;6g__centos-6.6;centos-6.3-current.xml;6g_centos-6-hacks.sh;;165148128;;cz;;
+centos-6.6-uefi;uefi;x86_64;centos;generated;6g__centos-6.6-uefi;centos-6.3-current-uefi.xml;6g_centos-6-hacks-uefi.sh;nvram-centos-6.6-uefi_VARS.fd;167154168;;cz;;
+centos-6.7;bios;x86_64;centos;generated;6g__centos-6.7;centos-6.3-current.xml;6g_centos-6-hacks.sh;;184456172;;cz;;
+centos-6.7-uefi;uefi;x86_64;centos;generated;6g__centos-6.7-uefi;centos-6.3-current-uefi.xml;6g_centos-6-hacks-uefi.sh;nvram-centos-6.7-uefi_VARS.fd;187871432;;cz;;
+centos-6.8;bios;x86_64;centos;generated;6g__centos-6.8;centos-6.3-current.xml;6g_centos-6-hacks.sh;;195386976;;cz;;
+centos-6.8-uefi;uefi;x86_64;centos;generated;6g__centos-6.8-uefi;centos-6.3-current-uefi.xml;6g_centos-6-hacks-uefi.sh;nvram-centos-6.8-uefi_VARS.fd;241168544;;cz;;
+centos-6.9;bios;x86_64;centos;generated;6g__centos-6.9;centos-6.3-current.xml;6g_centos-6-hacks.sh;;199916708;;cz;;
+centos-6.9-uefi;uefi;x86_64;centos;generated;6g__centos-6.9-uefi;centos-6.3-current-uefi.xml;6g_centos-6-hacks-uefi.sh;nvram-centos-6.9-uefi_VARS.fd;198372888;;cz;;
+centos-6.10;bios;x86_64;centos;generated;6g__centos-6.10;centos-6.3-current.xml;6g_centos-6-hacks.sh;;190364012;;cz;;
+centos-6.10-uefi;uefi;x86_64;centos;generated;6g__centos-6.10-uefi;centos-6.3-current-uefi.xml;6g_centos-6-hacks-uefi.sh;nvram-centos-6.10-uefi_VARS.fd;189710092;;cz;;
+;; CentOS 7.X
+centos-7.0;bios;x86_64;centos;generated;6g__centos-7.0;centos-6.3-current.xml;6g_centos-7-hacks.sh;;226559836;;cz;;
+centos-7.0-uefi;uefi;x86_64;centos;generated;6g__centos-7.0-uefi;centos-7.0-current-uefi.xml;6g_centos-7-hacks-uefi.sh;;228234652;;cz;;
+centos-7.1;bios;x86_64;centos;generated;6g__centos-7.1;centos-6.3-current.xml;6g_centos-7-hacks.sh;;244156864;;cz;;
+centos-7.1-uefi;uefi;x86_64;centos;generated;6g__centos-7.1-uefi;centos-7.0-current-uefi.xml;6g_centos-7-hacks-uefi.sh;;243483996;;cz;;
+centos-7.2;bios;x86_64;centos;generated;6g__centos-7.2;centos-6.3-current.xml;6g_centos-7-hacks.sh;;262577728;;cz;;
+centos-7.2-uefi;uefi;x86_64;centos;generated;6g__centos-7.2-uefi;centos-7.0-current-uefi.xml;6g_centos-7-hacks-uefi.sh;;259861684;;cz;;
+centos-7.3;bios;x86_64;centos;generated;6g__centos-7.3;centos-6.3-current.xml;6g_centos-7-hacks.sh;;291097628;;cz;;
+centos-7.3-uefi;uefi;x86_64;centos;generated;6g__centos-7.3-uefi;centos-7.0-current-uefi.xml;6g_centos-7-hacks-uefi.sh;;290200024;;cz;;
+centos-7.4;bios;x86_64;centos;generated;6g__centos-7.4;centos-6.3-current.xml;6g_centos-7-hacks.sh;;302677928;;cz;;
+centos-7.5;bios;x86_64;centos;generated;6g__centos-7.5;centos-6.3-current.xml;6g_centos-7-hacks.sh;;337963708;;cz;;
+centos-7.5-uefi;uefi;x86_64;centos;generated;6g__centos-7.5-uefi;centos-7.0-current-uefi.xml;6g_centos-7-hacks-uefi.sh;;336344720;;cz;;
+centos-7.6;bios;x86_64;centos;generated;6g__centos-7.6;centos-6.3-current.xml;6g_centos-7-hacks.sh;;335283940;;cz;;
+centos-7.6-uefi;uefi;x86_64;centos;generated;6g__centos-7.6-uefi;centos-7.0-current-uefi.xml;6g_centos-7-hacks-uefi.sh;;329969436;;cz;;
+centos-7.7;bios;x86_64;centos;generated;6g__centos-7.7;centos-6.3-current.xml;6g_centos-7-hacks.sh;;363889348;;cz;;
+centos-7.7-uefi;uefi;x86_64;centos;generated;6g__centos-7.7-uefi;centos-7.0-current-uefi.xml;6g_centos-7-hacks-uefi.sh;;360881268;;cz;;
+centos-7.8;bios;x86_64;centos;generated;6g__centos-7.8;centos-6.3-current.xml;6g_centos-7-hacks.sh;;374253952;386444422;cz;;
+centos-7.8-uefi;uefi;x86_64;centos;generated;6g__centos-7.8-uefi;centos-7.0-current-uefi.xml;6g_centos-7-hacks-uefi.sh;;374845408;385884568;cz;;
+centos-7.9;bios;x86_64;centos;generated;6g__centos-7.9;centos-6.3-current.xml;6g_centos-7-hacks.sh;;388797016;401417851;cz;;
+;; CentOS 8.X
+centos-8.0;bios;x86_64;centos;generated;6g__centos-8.0;centos-6.3-current.xml;6g_centos-8-hacks.sh;;358067408;;cz;;
+centos-8.0-uefi;uefi;x86_64;centos;generated;6g__centos-8.0-uefi;centos-7.0-current-uefi.xml;6g_centos-8-hacks-uefi.sh;;357594896;;cz;;
+centos-8.1;bios;x86_64;centos;generated;6g__centos-8.1;centos-6.3-current.xml;6g_centos-8-hacks.sh;;377561988;394674672;cz;;
+centos-8.1-uefi;uefi;x86_64;centos;generated;6g__centos-8.1-uefi;centos-7.0-current-uefi.xml;6g_centos-8-hacks-uefi.sh;;376161396;394029230;cz;;
+centos-8.2;bios;x86_64;centos;generated;6g__centos-8.2;centos-6.3-current.xml;6g_centos-8-hacks.sh;;395506764;413235437;cz;;
+centos-8.3;bios;x86_64;centos;generated;6g__centos-8.3;centos-6.3-current.xml;6g_centos-8-hacks.sh;;443534468;461983340;cz;;
+centos-8.4;bios;x86_64;centos;generated;6g__centos-8.4;centos-6.3-current.xml;6g_centos-8-hacks.sh;;459715256;474809297;cz;;
+centos-8.5;bios;x86_64;centos;generated;6g__centos-8.5;centos-6.3-current.xml;6g_centos-8-hacks.sh;;506681540;523699657;cz;;

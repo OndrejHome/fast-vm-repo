@@ -1,0 +1,3 @@
+fast-vm image name;platform (bios/eufi);architecture (x86_64);github distribution directory;fast-vm image file directory;fast-vm image file name;libvirt xml file name ;hack file name ;extra file name (optional);xz image file size in bytes; zst image file size in bytes;location;file containing description for image; all further values are ignored
+rocky-8.4;bios;x86_64;rocky;rocky-linux;6g__rocky-8.4;rocky-8.4-current.xml;6g_rocky-8-hacks.sh;;460967956;473062603;cz;;
+rocky-8.5;bios;x86_64;rocky;rocky-linux;6g__rocky-8.5;rocky-8.4-current.xml;6g_rocky-8-hacks.sh;;510374364;522056495;cz;;

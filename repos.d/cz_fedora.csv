@@ -1,0 +1,7 @@
+fast-vm image name;platform (bios/eufi);architecture (x86_64);github distribution directory;fast-vm image file directory;fast-vm image file name;libvirt xml file name ;hack file name ;extra file name (optional);xz image file size in bytes; zst image file size in bytes;location;file containing description for image; all further values are ignored
+fedora30;bios;x86_64;fedora;generated;6g__fedora-30;fedora-28-current.xml;6g_fedora-30-hacks.sh;;337021816;;cz;;
+fedora31;bios;x86_64;fedora;generated;6g__fedora-31;fedora-28-current.xml;6g_fedora-31-hacks.sh;;342177036;360587717;cz;;
+fedora32;bios;x86_64;fedora;generated;6g__fedora-32;fedora-28-current.xml;6g_fedora-32-hacks.sh;;360523656;380577789;cz;;
+fedora33;bios;x86_64;fedora;generated;6g__fedora-33;fedora-28-current.xml;6g_fedora-33-hacks.sh;;402574916;423076525;cz;;
+fedora34;bios;x86_64;fedora;generated;6g__fedora-34;fedora-28-current.xml;6g_fedora-34-hacks.sh;;443769964;451608802;cz;;
+fedora35;bios;x86_64;fedora;generated;6g__fedora-35;fedora-28-current.xml;6g_fedora-35-hacks.sh;;485856964;490938749;cz;;
