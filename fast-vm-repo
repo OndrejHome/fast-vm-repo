@@ -199,7 +199,7 @@ do
 	fi
 done
 # cleanup temporary files
-if [ -n "$tmp_files" ]; then rm -f "$tmp_files"; fi
+if [ -n "$tmp_files" ]; then for file in $tmp_files; do rm -f "$file"; done; fi
 
 }
 
