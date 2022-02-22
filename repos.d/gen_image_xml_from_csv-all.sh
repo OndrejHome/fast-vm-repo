@@ -17,3 +17,11 @@ bash gen_image_xml_from_csv.sh cz_rhcos.csv template_ > cz_rhcos.xml
 bash gen_image_xml_from_csv.sh kr_rhcos.csv template_ > kr_rhcos.xml
 bash gen_image_xml_from_csv.sh cz_opensuse.csv template_ > cz_opensuse.xml
 bash gen_image_xml_from_csv.sh kr_opensuse.csv template_ > kr_opensuse.xml
+bash gen_image_xml_from_csv.sh cz_ubuntu.csv template_ > cz_ubuntu.xml
+bash gen_image_xml_from_csv.sh kr_ubuntu.csv template_ > kr_ubuntu.xml
+bash gen_image_xml_from_csv.sh cz_amazon-linux.csv template_ > cz_amazon-linux.xml
+bash gen_image_xml_from_csv.sh kr_amazon-linux.csv template_ > kr_amazon-linux.xml
+bash gen_image_xml_from_csv.sh cz_gentoo.csv template_ > cz_gentoo.xml
+bash gen_image_xml_from_csv.sh kr_gentoo.csv template_ > kr_gentoo.xml
+bash gen_image_xml_from_csv.sh cz_fedora-coreos.csv template_ > cz_fedora-coreos.xml
+bash gen_image_xml_from_csv.sh kr_fedora-coreos.csv template_ > kr_fedora-coreos.xml

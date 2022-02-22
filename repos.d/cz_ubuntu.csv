@@ -1,0 +1,3 @@
+fast-vm image name;platform (bios/eufi);architecture (x86_64);github distribution directory;fast-vm image file directory;fast-vm image file name;libvirt xml file name ;hack file name ;extra file name (optional);xz image file size in bytes; zst image file size in bytes;location;file containing description for image; all further values are ignored
+u1804.4;bios;x86_64;ubuntu;generated;6g__ubuntu-18.04.4;ubuntu-lts-1804-current.xml;ubuntu-1804-hacks.sh;;466186064;483426913;cz;;
+u2004.0;bios;x86_64;ubuntu;generated;6g__ubuntu-20.04.0;ubuntu-lts-1804-current.xml;ubuntu-2004-hacks.sh;;575235344;595934409;cz;;

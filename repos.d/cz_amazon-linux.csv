@@ -1,0 +1,3 @@
+fast-vm image name;platform (bios/eufi);architecture (x86_64);github distribution directory;fast-vm image file directory;fast-vm image file name;libvirt xml file name ;hack file name ;extra file name (optional);xz image file size in bytes; zst image file size in bytes;location;file containing description for image; all further values are ignored
+
+amzn2.211223;bios;x86_64;amazon-linux;amazon-linux;25g__amzn2.211223.img.xz;amazon-linux-2.xml;25g_amazon-linux-2-hacks.sh;;247993992;260511654;cz;;

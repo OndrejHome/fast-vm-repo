@@ -1,0 +1,3 @@
+url=http://ftp.linux.cz/pub/linux/people/ondrej_famera/fastvm-images/repository/cz_amazon-linux.xml
+description=CZ Amazon Linux images
+enabled=1

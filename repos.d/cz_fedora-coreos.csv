@@ -1,0 +1,4 @@
+fast-vm image name;platform (bios/eufi);architecture (x86_64);github distribution directory;fast-vm image file directory;fast-vm image file name;libvirt xml file name ;hack file name ;extra file name (optional);xz image file size in bytes; zst image file size in bytes;location;file containing description for image; all further values are ignored
+
+fcos32.200629;bios;x86_64;fcos;fedora-coreos;8g__fcos32.200629;fcos-32.xml;hacks-fcos-32.sh;;556693760;585562409;cz;;
+fcos34.210725;bios;x86_64;fcos;fedora-coreos;10g__fcos34.210725.img.xz;fcos-34.xml;hacks-fcos-34.sh;;658354564;676730915;cz;;

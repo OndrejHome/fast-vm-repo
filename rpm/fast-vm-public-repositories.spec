@@ -1,5 +1,5 @@
 Name:           fast-vm-public-repositories
-Version:        20220210
+Version:        20220222
 Release:        1%{?dist}
 Summary:        Repository files for fast-vm-repo (All mirrors)
 
@@ -47,6 +47,15 @@ Repository files for fast-vm-repo script - public fast-vm images.
 %config(noreplace) %{_sysconfdir}/fast-vm.repos.d/cz_*.repo
 
 %changelog
+* Tue Feb 22 2022 Ondrej Famera <ondrej-xa2iel8u@famera.cz> 20220222-1
+- Amazon Linux repository
+- Fedora CoreOS repository
+- Gentoo Linux repository
+- Ubuntu Linux repository
+- OpenSUSE repository
+- RH CoreOS repository
+- Oracle Linux repository
+
 * Thu Feb 10 2022 Ondrej Famera <ondrej-xa2iel8u@famera.cz> 20220210-1
 - Added CentOS Stream repository
 
