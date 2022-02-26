@@ -212,7 +212,7 @@ case "$1" in
 				download_repository_metadata
 				;;
 			short)
-				for repofile in $(find "$FASTVM_REPO_DIR" -name '*.repo'|sort); 
+				grep -l '^enabled=1' $FASTVM_REPO_DIR/*repo|sort|while read -r repofile
 				do
 					basename "$repofile" .repo
 				done
