@@ -21,5 +21,5 @@ install:
 
 install-repos:
 	mkdir -p ${DESTDIR}/${sysconfdir}/fast-vm.repos.d/
-	install -pm 440 repos.d/alma8.repo ${DESTDIR}/${sysconfdir}/fast-vm.repos.d/
-	install -pm 440 repos.d/centos8.repo ${DESTDIR}/${sysconfdir}/fast-vm.repos.d/
+	install -pm 440 repos.d/cz_*.repo ${DESTDIR}/${sysconfdir}/fast-vm.repos.d/
+	install -pm 440 repos.d/kr_*.repo ${DESTDIR}/${sysconfdir}/fast-vm.repos.d/
