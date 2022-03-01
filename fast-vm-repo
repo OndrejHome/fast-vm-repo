@@ -2,7 +2,6 @@
 FASTVM_REPO_DIR="/etc/fast-vm.repos.d"
 FASTVM_REPO_CACHE_DIR="/tmp/fast-vm-repo"
 FASTVM_XSLT_DIR="/usr/share/fast-vm-repo/xslt"
-LOG_LEVEL=7
 DISPLAY_LEVEL=7
 FVM=$(basename "$0")
 
@@ -24,9 +23,6 @@ P_ERROR=3
 pmsg () {
 	priority="$1"
 	message="$2"
-	if [ "$LOG_LEVEL" -ge "$priority" ]; then
-		printf "%s | %s" "$USER" "$message"|logger -p "$priority" --id -t fast-vm
-	fi
 	if [ "$DISPLAY_LEVEL" -ge "$priority" ]; then
 		case "$priority" in
 			"$P_DEBUG")
@@ -43,7 +39,7 @@ pmsg () {
 				;;
 			"$P_ERROR")
 				# shellcheck disable=SC2059
-				printf "[${c_red}err${c_normal}] %b" "$message"
+				printf "[${c_red}err${c_normal}] %b" "$message" >&2
 				;;
 			*)
 				printf "[unk] %s" "$message"
@@ -78,7 +74,8 @@ check_file () {
 				file_size=0
 				pmsg $P_DEBUG "Unable to detect remote file. Using '$file_size' instead.\n"
 			else
-				pmsg $P_DEBUG "Detected remote file with size '$file_size'.\n"
+				pmsg $P_DEBUG "Remote file: $file_path\n"
+				pmsg $P_DEBUG "Remote file size: $file_size'\n"
 			fi
 		else
 			if [ -z "$quiet_flag" ]; then
@@ -100,11 +97,11 @@ check_file () {
 download_file () {
 	file_url="$1"
 	tmp_file=$(mktemp)
-	pmsg $P_DEBUG "downloading $file_url\ninto $tmp_file\n" >&2
 	if curl -o "$tmp_file" -s "$file_url"; then
 		echo "$tmp_file"
+		pmsg $P_INFO "Downloaded $file_url\n"
 	else
-		pmsg $P_ERROR "Download failed\n" >&2
+		pmsg $P_ERROR "Download failed\n"
 		exit 1
 	fi
 }
@@ -112,7 +109,7 @@ download_file () {
 validate_xml_file () {
 	file="$1"
 	if ! xmllint --noout "$file" 2>&1; then
-		echo "XML file validation failed"
+		pmsg $P_ERROR "XML file ($file) validation failed.\n"
 		return 1
 	fi
 	metadata_version=$(xmllint --xpath 'string(/repo/metadata/@version)' "$file")
@@ -307,6 +304,7 @@ case "$1" in
 
 			# call actual import via fast-vm-image
 			if command -v fast-vm-image >/dev/null 2>&1; then
+				pmsg $P_INFO "Calling fast-vm-image to import the image.\n=========> fast-vm-image\n"
 				fast-vm-image import "$image_name" "$url" "$libvirt_xml_url" "$hack_file_url"
 			else
 				pmsg $P_DEBUG "fast-vm-image import $image_name $url $libvirt_xml_url $hack_file_url\n"
