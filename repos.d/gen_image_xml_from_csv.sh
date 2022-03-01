@@ -7,6 +7,7 @@ fi
 # XML header
 cat <<EOF
 <?xml version="1.0" encoding="UTF-8"?>
+<metadata version='1'/>
 <images>
 EOF
 ###

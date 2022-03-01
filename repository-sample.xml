@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<metadata version='1'/>
+<repo>
+<metadata version='1' />
 <images>
 <image>
  <name>centos-8.1</name>
@@ -21,8 +22,10 @@
  <extra-file format='plain'>http://ftp.linux.cz/pub/linux/people/ondrej_famera/fastvm-images/generated/nvram-centos-6.9-uefi_VARS.fd</extra-file>
 </image>
 </images>
+</repo>
 
 <!--
+<repo>
 <metadata version='1'/>  REQUIRED
 <images>
   <image>
@@ -37,5 +40,6 @@
     <extra-file format='plain'>http://...</extra-file>  OPTIONAL
   </image>
 </images>
+</repo>
 -->
 

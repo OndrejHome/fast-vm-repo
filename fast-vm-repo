@@ -115,6 +115,11 @@ validate_xml_file () {
 		echo "XML file validation failed"
 		return 1
 	fi
+	metadata_version=$(xmllint --xpath 'string(/repo/metadata/@version)' "$file")
+	if [ -z "$metadata_version" ]; then
+		pmsg $P_WARNING "XML repository file '$file' doesn't define metadata version. Using version 1.\n"
+		metadata_version=1
+	fi
 }
 
 usage () {
@@ -261,6 +266,10 @@ case "$1" in
 			pmsg $P_ERROR "Cached repository data not present. Try running 'fast-vm-repo repolist refresh'.\n"
 			exit 1
 		fi
+		if ! validate_xml_file "$FASTVM_REPO_CACHE_DIR/${repo_id}.xml"; then
+			pmsg $P_ERROR "Cached repository metadata XML is invalid. Try '$0 repolist refresh' to re-download metadata.\n"
+			exit 1
+		fi
 
 		if [ "$(xmllint --xpath "count(//image/name[text() = '$image_name'])" "$FASTVM_REPO_CACHE_DIR/${repo_id}.xml")" = '0' ]; then
 			pmsg $P_ERROR "Image named '$image_name' not found in '$repo_id' repository.\n";
@@ -326,7 +335,7 @@ case "$1" in
 		fi
 
 		printf "==== Repo %s image %s details:\n" "$repo_id" "$image_name"
-		description=$(xmllint --xpath "/images/image/name[text() = '$image_name']/../description/text()" "$FASTVM_REPO_CACHE_DIR/${repo_id}.xml")
+		description=$(xmllint --xpath "//images/image/name[text() = '$image_name']/../description/text()" "$FASTVM_REPO_CACHE_DIR/${repo_id}.xml")
 		details=$(xmllint --xpath "//image/name[text() = '$image_name']/.." "$FASTVM_REPO_CACHE_DIR/${repo_id}.xml"|xsltproc "$FASTVM_XSLT_DIR/process_image_detail.xml" -)
 		echo "$details" |while read -r image_name first_url libvirt_xml_url hack_file_url xz_url xz_size zst_url zst_size extra_file; do 
 
