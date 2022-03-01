@@ -99,7 +99,7 @@ download_file () {
 	tmp_file=$(mktemp)
 	if curl -o "$tmp_file" -s "$file_url"; then
 		echo "$tmp_file"
-		pmsg $P_INFO "Downloaded $file_url\n"
+		pmsg $P_INFO "Downloaded $file_url\n" >&2
 	else
 		pmsg $P_ERROR "Download failed\n"
 		exit 1
