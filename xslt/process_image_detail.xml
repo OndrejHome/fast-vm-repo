@@ -4,6 +4,16 @@
     <xsl:for-each select="//image">
         <xsl:value-of select="name/text()" />
 
+        <xsl:if test="count(arch) = 1">
+	  <xsl:value-of select="concat(' ', arch/text())" />
+	</xsl:if>
+        <xsl:if test="count(arch) != 1"> no</xsl:if>
+
+        <xsl:if test="count(platform) = 1">
+	  <xsl:value-of select="concat(' ', platform/text())" />
+	</xsl:if>
+        <xsl:if test="count(platform) != 1"> no</xsl:if>
+
 	<xsl:value-of select="concat(' ', image-file/text()[1])" />
 
         <xsl:if test="count(libvirt-xml) = 1">
@@ -28,7 +38,9 @@
 	</xsl:if>
         <xsl:if test="count(image-file[@format='zst']) = 0"> NA NA</xsl:if>
 
-        <xsl:if test="count(extra-file) = 1"> yes</xsl:if>
+        <xsl:if test="count(extra-file) = 1">
+	  <xsl:value-of select="concat(' ', extra-file[@format='plain']/text())" />
+	</xsl:if>
         <xsl:if test="count(extra-file) != 1"> no</xsl:if>
 
         <xsl:text>&#xa;</xsl:text>
