@@ -7,6 +7,7 @@ fi
 # XML header
 cat <<EOF
 <?xml version="1.0" encoding="UTF-8"?>
+<repo>
 <metadata version='1'/>
 <images>
 EOF
@@ -52,3 +53,4 @@ done < "$1"
 ###
 # XML footer
 echo '</images>'
+echo '</repo>'
