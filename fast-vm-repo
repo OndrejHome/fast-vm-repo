@@ -267,7 +267,7 @@ case "$1" in
 		fi
 
 		details=$(xmllint --xpath "//image/name[text() = '$image_name']/.." "$FASTVM_REPO_CACHE_DIR/${repo_id}.xml"|xsltproc "$FASTVM_XSLT_DIR/process_image_detail.xml" -)
-		echo "$details" |while read -r image_name first_url libvirt_xml_url hack_file_url xz_url xz_size zst_url zst_size extra_file; do 
+		echo "$details" |while read -r image_name arch platform first_url libvirt_xml_url hack_file_url xz_url xz_size zst_url zst_size extra_file; do
 			url=''
 			case "$image_format" in
 				xz)
