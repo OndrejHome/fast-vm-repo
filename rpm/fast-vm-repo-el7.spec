@@ -1,5 +1,5 @@
 Name:           fast-vm-repo
-Version:        0.1
+Version:        0.2
 Release:        1%{?dist}
 Summary:        Script for listing and importing fast-vm images from repositories.
 
@@ -41,5 +41,11 @@ Requires:     bash-completion
 %config(noreplace) %{_sysconfdir}/fast-vm.repos.d/
 
 %changelog
+* Tue Mar 01 2022 Ondrej Famera <ondrej-xa2iel8u@famera.cz> 0.2-1
+- fix temporary files deletion
+- only show/offer enabled repositories for autocompletion
+- check for repository metadata version
+- improve the look of printed messages and image details
+
 * Fri Feb 04 2022 Ondrej Famera <ondrej-xa2iel8u@famera.cz> 0.1-1
 - initial release

@@ -2,7 +2,7 @@
 # dnf install rpmdevtools bash-completion make
 # rpmdev-setuptree
 
-# curl https://codeload.github.com/OndrejHome/fast-vm-repo/tar.gz/0.1 > rpmbuild/SOURCES/0.1.tar.gz
+# curl https://codeload.github.com/OndrejHome/fast-vm-repo/tar.gz/0.2 > rpmbuild/SOURCES/0.2.tar.gz
 # curl https://codeload.github.com/OndrejHome/fast-vm-repo/tar.gz/20220206 > rpmbuild/SOURCES/20220206.tar.gz
 # curl https://raw.githubusercontent.com/OndrejHome/fast-vm-repo/master/rpm/fast-vm-repo-fedora.spec > rpmbuild/SPECS/fast-vm-repo-fedora.spec
 # curl https://raw.githubusercontent.com/OndrejHome/fast-vm-repo/master/rpm/fast-vm-public-repositories.spec > rpmbuild/SPECS/fast-vm-public-repositories.spec
@@ -10,9 +10,9 @@
 # rpmbuild -ba rpmbuild/SPECS/fast-vm-public-repositories.spec
 
 resulting files
-- rpmbuild/SRPMS/fast-vm-repo-0.1-1.fc35.src.rpm
+- rpmbuild/SRPMS/fast-vm-repo-0.2-1.fc35.src.rpm
 - rpmbuild/SRPMS/fast-vm-public-repositories-20220206-1.fc35.src.rpm
-- rpmbuild/RPMS/noarch/fast-vm-repo-0.1-1.fc35.noarch.rpm
+- rpmbuild/RPMS/noarch/fast-vm-repo-0.2-1.fc35.noarch.rpm
 - rpmbuild/RPMS/noarch/fast-vm-public-repositories-20220206-1.fc35.noarch.rpm
 - rpmbuild/RPMS/noarch/fast-vm-public-repositories-cz-20220206-1.fc35.noarch.rpm
 - rpmbuild/RPMS/noarch/fast-vm-public-repositories-kr-20220206-1.fc35.noarch.rpm
@@ -20,7 +20,7 @@ resulting files
 === fast-vm-repo RPM for CentOS/RHEL 7
 # yum install rpmdevtools bash-completion
 # rpmdev-setuptree
-# curl https://codeload.github.com/OndrejHome/fast-vm-repo/tar.gz/0.1 > rpmbuild/SOURCES/0.1.tar.gz
+# curl https://codeload.github.com/OndrejHome/fast-vm-repo/tar.gz/0.2 > rpmbuild/SOURCES/0.2.tar.gz
 # curl https://codeload.github.com/OndrejHome/fast-vm-repo/tar.gz/20220206 > rpmbuild/SOURCES/20220206.tar.gz
 # curl https://raw.githubusercontent.com/OndrejHome/fast-vm-repo/master/rpm/fast-vm-repo-el7.spec > rpmbuild/SPECS/fast-vm-repo-el7.spec
 # curl https://raw.githubusercontent.com/OndrejHome/fast-vm-repo/master/rpm/fast-vm-public-repositories.spec > rpmbuild/SPECS/fast-vm-public-repositories.spec
@@ -28,9 +28,9 @@ resulting files
 # rpmbuild -ba rpmbuild/SPECS/fast-vm-public-repositories.spec
 
 resulting files
-- rpmbuild/SRPMS/fast-vm-repo-0.1-1.el7.src.rpm
+- rpmbuild/SRPMS/fast-vm-repo-0.2-1.el7.src.rpm
 - rpmbuild/SRPMS/fast-vm-public-repositories-20220206-1.el7.src.rpm
-- rpmbuild/RPMS/noarch/fast-vm-repo-0.1-1.el7.noarch.rpm
+- rpmbuild/RPMS/noarch/fast-vm-repo-0.2-1.el7.noarch.rpm
 - rpmbuild/RPMS/noarch/fast-vm-public-repositories-20220206-1.el7.noarch.rpm
 - rpmbuild/RPMS/noarch/fast-vm-public-repositories-cz-20220206-1.el7.noarch.rpm
 - rpmbuild/RPMS/noarch/fast-vm-public-repositories-kr-20220206-1.el7.noarch.rpm
@@ -38,7 +38,7 @@ resulting files
 === fast-vm-repo RPM for Alma/RHEL 8
 # dnf install rpmdevtools bash-completion make
 # rpmdev-setuptree
-# curl https://codeload.github.com/OndrejHome/fast-vm-repo/tar.gz/0.1 > rpmbuild/SOURCES/0.1.tar.gz
+# curl https://codeload.github.com/OndrejHome/fast-vm-repo/tar.gz/0.2 > rpmbuild/SOURCES/0.2.tar.gz
 # curl https://codeload.github.com/OndrejHome/fast-vm-repo/tar.gz/20220206 > rpmbuild/SOURCES/20220206.tar.gz
 # curl https://raw.githubusercontent.com/OndrejHome/fast-vm-repo/master/rpm/fast-vm-repo-fedora.spec > rpmbuild/SPECS/fast-vm-repo-fedora.spec
 # curl https://raw.githubusercontent.com/OndrejHome/fast-vm-repo/master/rpm/fast-vm-public-repositories.spec > rpmbuild/SPECS/fast-vm-public-repositories.spec
@@ -46,9 +46,9 @@ resulting files
 # rpmbuild -ba rpmbuild/SPECS/fast-vm-public-repositories.spec
 
 resulting files
-- rpmbuild/SRPMS/fast-vm-repo-0.1-1.el8.src.rpm
+- rpmbuild/SRPMS/fast-vm-repo-0.2-1.el8.src.rpm
 - rpmbuild/SRPMS/fast-vm-public-repositories-20220206-1.el8.src.rpm
-- rpmbuild/RPMS/noarch/fast-vm-repo-0.1-1.el8.noarch.rpm
+- rpmbuild/RPMS/noarch/fast-vm-repo-0.2-1.el8.noarch.rpm
 - rpmbuild/RPMS/noarch/fast-vm-public-repositories-20220206-1.el8.noarch.rpm
 - rpmbuild/RPMS/noarch/fast-vm-public-repositories-cz-20220206-1.el8.noarch.rpm
 - rpmbuild/RPMS/noarch/fast-vm-public-repositories-kr-20220206-1.el8.noarch.rpm

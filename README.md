@@ -21,6 +21,7 @@ This part also servers as example for how to create own private repository for i
 
 ### Supported/Tested OS
 - RPM-based OSes supported by **fast-vm** (RHEL 7/8, CentOS 7/8, Fedora 35)
+- Gentoo
 
 ### Requirements
 - libxml2 (`xmllint`)

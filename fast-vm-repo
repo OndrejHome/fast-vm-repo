@@ -136,7 +136,7 @@ usage () {
 			echo "$FVM import RepoId ImageName [ <xz|zst> ]"
 			;;
 		*)
-			echo "== fast-vm-repo version 0.1 <ondrej-xa2iel8u@famera.cz> =="
+			echo "== fast-vm-repo version 0.2 <ondrej-xa2iel8u@famera.cz> =="
 			echo "$FVM <action> <options>"
 			for cmd in repolist list info import;
 			do
