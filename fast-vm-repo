@@ -153,13 +153,11 @@ usage () {
 # first parameter is compulsory
 if [ -z "$1" ]; then usage; fi
 
-## check if there is curl available so we can fetch images from http/https
+# check if there is curl available so we can fetch repository XMLs from http/https
 command -v curl >/dev/null 2>&1
 curl_ok="$?"
 
 ## Check repositories we have enabled
-
-
 
 check_repo_cache_dir () {
 	# create repository cache directory if it doesn't exists
@@ -172,11 +170,6 @@ check_repo_cache_dir () {
 }
 
 download_repository_metadata () {
-#/etc/fast-vm.repos.d/*repo
-# Example .repo file:
-# description= test repository
-# url=http://localhost/test.xml
-# enabled=1
 tmp_files=""
 
 for repofile in $(find "$FASTVM_REPO_DIR" -name '*.repo'); 
