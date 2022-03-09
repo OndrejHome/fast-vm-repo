@@ -27,8 +27,8 @@ while IFS=";" read -r img_name platform arch github_dist fdir fnm lxml hack extr
   # generate image entry for each location
   for loc in $location; do
     # check if we have template file
-    if [ ! -f "template_${loc}.xml" ]; then
-        echo "missing temlate file - template_${loc}.xml" >&2
+    if [ ! -f "$2${loc}.xml" ]; then
+        echo "missing temlate file - $2${loc}.xml" >&2
 	continue
     fi
     # detect of following optional variables are present
