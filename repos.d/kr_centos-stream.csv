@@ -1,10 +1,8 @@
 fast-vm image name;platform (bios/eufi);architecture (x86_64);github distribution directory;fast-vm image file directory;fast-vm image file name;libvirt xml file name ;hack file name ;extra file name (optional);xz image file size in bytes; zst image file size in bytes;location;file containing description for image; all further values are ignored
 ;; CentOS Stream 8.X
-c8s201211;bios;x86_64;centos;generated;6g__c8s201211;centos-6.3-current.xml;6g_centos-8-hacks.sh;;486309812;508791547;kr;;
-c8s210126;bios;x86_64;centos;generated;6g__c8s210126;centos-6.3-current.xml;6g_centos-8-hacks.sh;;480442340;499229609;kr;;
 c8s220207;bios;x86_64;centos;generated;6g__c8s220207;centos-6.3-current.xml;6g_centos-8-hacks.sh;;523451496;538211962;kr;;
+c8s220506;bios;x86_64;centos;generated;6g__c8s220506;centos-6.3-current.xml;6g_centos-8-hacks.sh;;553782824;568576988;kr;;
 ;; CentOS Stream 9.X
-c9s210922;bios;x86_64;centos;generated;6g__c9s210922;centos-6.3-current.xml;6g_centos-9-hacks.sh;;533721540;541448393;kr;;
-c9s211214;bios;x86_64;centos;generated;6g__c9s211214;centos-6.3-current.xml;6g_centos-9-hacks.sh;;551513412;555932710;kr;;
 c9s220202;bios;x86_64;centos;generated;6g__c9s220202;centos-6.3-current.xml;6g_centos-9-hacks.sh;;553108536;557758876;kr;;
+c9s220509;bios;x86_64;centos;generated;6g__c9s220509;centos-6.3-current.xml;6g_centos-9-hacks.sh;;583739200;587198543;kr;;
 
