@@ -5,3 +5,4 @@ fedora32;bios;x86_64;fedora;generated;6g__fedora-32;fedora-28-current.xml;6g_fed
 fedora33;bios;x86_64;fedora;generated;6g__fedora-33;fedora-28-current.xml;6g_fedora-33-hacks.sh;;402574916;423076525;cz;;
 fedora34;bios;x86_64;fedora;generated;6g__fedora-34;fedora-28-current.xml;6g_fedora-34-hacks.sh;;443769964;451608802;cz;;
 fedora35;bios;x86_64;fedora;generated;6g__fedora-35;fedora-28-current.xml;6g_fedora-35-hacks.sh;;485856964;490938749;cz;;
+fedora36;bios;x86_64;fedora;generated;6g__fedora-36;fedora-28-current.xml;6g_fedora-36-hacks.sh;;549528268;555866886;cz;;
