@@ -203,6 +203,7 @@ case "$1" in
 	repolist)
 		case "$2" in
 			refresh)
+				check_repo_cache_dir
 				rm -f "$FASTVM_REPO_CACHE_DIR/*xml"
 				download_repository_metadata
 				;;
