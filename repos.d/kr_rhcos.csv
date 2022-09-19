@@ -1,6 +1,4 @@
 fast-vm image name;platform (bios/eufi);architecture (x86_64);github distribution directory;fast-vm image file directory;fast-vm image file name;libvirt xml file name ;hack file name ;extra file name (optional);xz image file size in bytes; zst image file size in bytes;location;file containing description for image; all further values are ignored
-rhcos-4.5.1;bios;x86_64;rhcos;rhcos;16g__rhcos-4.5.1;rhcos-4.5.xml;hacks-rhcos-4.5.sh;;636414144;668824207;kr;;
-rhcos-4.5.2;bios;x86_64;rhcos;rhcos;16g__rhcos-4.5.2;rhcos-4.5.xml;hacks-rhcos-4.5.sh;;635809492;668842323;kr;;
-rhcos-4.5.6;bios;x86_64;rhcos;rhcos;16g__rhcos-4.5.6;rhcos-4.5.xml;hacks-rhcos-4.5.sh;;638091224;672518389;kr;;
 rhcos-4.6.1;bios;x86_64;rhcos;rhcos;16g__rhcos-4.6.1;rhcos-4.6.xml;hacks-rhcos-4.6.sh;;631526328;665604064;kr;;
 rhcos-4.6.8;bios;x86_64;rhcos;rhcos;16g__rhcos-4.6.8;rhcos-4.6.xml;hacks-rhcos-4.6.sh;;632891468;667277632;kr;;
+rhcos-4.10.3;bios;x86_64;rhcos;rhcos;16g__rhcos-4.10.3;rhcos-4.10.xml;hacks-rhcos-4.10.sh;;743231724;777559217;kr;;

@@ -1,7 +1,7 @@
 fast-vm image name;platform (bios/eufi);architecture (x86_64);github distribution directory;fast-vm image file directory;fast-vm image file name;libvirt xml file name ;hack file name ;extra file name (optional);xz image file size in bytes; zst image file size in bytes;location;file containing description for image; all further values are ignored
-gentoo201206o;bios;x86_64;gentoo;generated;10g__gentoo201206-openrc;gentoo.xml;gentoo-hacks-openrc.sh;;324826680;341225790;cz;;
-gentoo201206s;bios;x86_64;gentoo;generated;10g__gentoo201206-systemd;gentoo.xml;gentoo-hacks-systemd.sh;;321360592;334603327;cz;;
 gentoo210324o;bios;x86_64;gentoo;generated;10g__gentoo210324-openrc;gentoo.xml;gentoo-hacks-openrc.sh;;313025200;326108186;cz;;
 gentoo210324s;bios;x86_64;gentoo;generated;10g__gentoo210324-systemd;gentoo.xml;gentoo-hacks-systemd.sh;;333339904;347013871;cz;;
 gentoo210905o;bios;x86_64;gentoo;generated;10g__gentoo210905-openrc;gentoo.xml;gentoo-hacks-openrc-ens.sh;;295344772;298279562;cz;;
 gentoo210905s;bios;x86_64;gentoo;generated;10g__gentoo210905-systemd;gentoo.xml;gentoo-hacks-systemd.sh;;316084152;316961158;cz;;
+gentoo220710o;bios;x86_64;gentoo;generated;10g__gentoo220710-openrc;gentoo.xml;gentoo-hacks-openrc-ens.sh;;316052012;327186658;cz;;
+gentoo220710s;bios;x86_64;gentoo;generated;10g__gentoo220710-systemd;gentoo.xml;gentoo-hacks-systemd.sh;;344704092;350386776;cz;;

@@ -4,3 +4,4 @@ alma-8.3;bios;x86_64;alma;generated;6g__alma-8.3;alma-8.3-current.xml;6g_alma-8-
 alma-8.4;bios;x86_64;alma;generated;6g__alma-8.4;alma-8.3-current.xml;6g_alma-8-hacks.sh;;460818280;477765152;kr;;
 alma-8.5;bios;x86_64;alma;generated;6g__alma-8.5;alma-8.3-current.xml;6g_alma-8-hacks.sh;;505512232;522982758;kr;;
 alma-8.6;bios;x86_64;alma;generated;6g__alma-8.6;alma-8.3-current.xml;6g_alma-8-hacks.sh;;553692008;569458268;kr;;
+alma-9.0;bios;x86_64;alma;generated;6g__alma-9.0;alma-8.3-current.xml;6g_alma-9-hacks.sh;;584060980;586317856;kr;;

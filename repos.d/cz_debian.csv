@@ -23,8 +23,11 @@ debian-10.9;bios;x86_64;debian;generated;6g__debian-10.9;debian-9-current.xml;de
 debian-10.10;bios;x86_64;debian;generated;6g__debian-10.10;debian-9-current.xml;debian-10.sh;;214879060;229992298;cz;;
 debian-10.11;bios;x86_64;debian;generated;6g__debian-10.11;debian-9-current.xml;debian-10.sh;;211003804;223283665;cz;;
 debian-10.12;bios;x86_64;debian;generated;6g__debian-10.12;debian-9-current.xml;debian-10.sh;;211861572;223460093;cz;;
+debian-10.13;bios;x86_64;debian;generated;6g__debian-10.13;debian-9-current.xml;debian-10.sh;;211422992;223593052;cz;;
 ;;Debian 11.X
 debian-11.0;bios;x86_64;debian;generated;6g__debian-11.0;debian-9-current.xml;debian-11.sh;;225983732;238460256;cz;;
 debian-11.1;bios;x86_64;debian;generated;6g__debian-11.1;debian-9-current.xml;debian-11.sh;;225781004;238747132;cz;;
 debian-11.2;bios;x86_64;debian;generated;6g__debian-11.2;debian-9-current.xml;debian-11.sh;;222619080;234825335;cz;;
 debian-11.3;bios;x86_64;debian;generated;6g__debian-11.3;debian-9-current.xml;debian-11.sh;;232526788;243190465;cz;;
+debian-11.4;bios;x86_64;debian;generated;6g__debian-11.4;debian-9-current.xml;debian-11.sh;;226118044;238548684;cz;;
+debian-11.5;bios;x86_64;debian;generated;6g__debian-11.5;debian-9-current.xml;debian-11.sh;;229055416;241382801;cz;;
